@@ -6,7 +6,7 @@ import mlflow
 client = MlflowClient()
 
 # Replace with the run_id of the run where the model was logged
-run_id = "ee2671fb022c47f89c27c9aa3ef25f42"
+run_id = "ee2671fb022c47f89c27c9aa3ef25f42" # This was fetched manually from the UI - but command should be used in live project.
 
 # Replace with the path to the logged model within the run
 model_path = "file:///C:/Users/Nitish/Desktop/mlops/model-registry-demo/mlruns/406765814162474516/ee2671fb022c47f89c27c9aa3ef25f42/artifacts/random_forest"
@@ -15,8 +15,8 @@ model_path = "file:///C:/Users/Nitish/Desktop/mlops/model-registry-demo/mlruns/4
 model_uri = f"runs:/{run_id}/{model_path}"
 
 # Register the model in the model registry
-model_name = "diabetes-rf"
-result = mlflow.register_model(model_uri, model_name)
+model_name = "diabetes-rf" # This was fetched manually from the UI - but command should be used in live project.
+result = mlflow.register_model(model_uri, model_name) # Registering the model
 
 import time
 time.sleep(5)
@@ -28,6 +28,7 @@ client.update_model_version(
     description="This is a RandomForest model trained to predict diabetes outcomes based on Pima Indians Diabetes Dataset."
 )
 
+# Adding tag
 client.set_model_version_tag(
     name=model_name,
     version=result.version,
@@ -35,6 +36,7 @@ client.set_model_version_tag(
     value="diabetes prediction"
 )
 
+# Adding tag
 client.set_model_version_tag(
     name=model_name,
     version=result.version,

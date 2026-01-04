@@ -5,8 +5,8 @@ import numpy as np
 
 data = np.array([1,85,66,29,0,26.6,0.351,31]).reshape(1,-1)
 
-model_name = "diabetes-rf"
-model_version = 3
+model_name = "diabetes-rf" # This should be fetched programatically in live project
+model_version = 3 # This should be fetched programatically in live project
 
 model = mlflow.pyfunc.load_model(model_uri=f"models:/{model_name}/{model_version}")
 
