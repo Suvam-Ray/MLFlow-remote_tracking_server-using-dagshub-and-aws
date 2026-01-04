@@ -61,6 +61,19 @@ with mlflow.start_run():
     mlflow.set_tag('author','rahul')
     mlflow.set_tag('model','random forest')
 
+    # logging datasets
+    train_df = X_train
+    train_df['variety'] = y_train
+
+    test_df = X_test
+    test_df['variety'] = y_test
+
+    train_df = mlflow.data.from_pandas(train_df)
+    test_df = mlflow.data.from_pandas(test_df)
+
+    mlflow.log_input(train_df, "train")
+    mlflow.log_input(test_df, "validation")
+    
     print('accuracy', accuracy)
 
 
